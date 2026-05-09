@@ -1,6 +1,6 @@
 ---
 name: anchoring-map-evaluator
-description: Evaluate a thesis Introduction and Background draft against the Anchoring Map rubric: 5 anchors (Empirical, Literature, Assumption, Scope, Contribution), 5 funnel stages (Hook, Conversation, Problematization, Research Question, Promise and Map), and a 12-point pre-submission audit. TRIGGER when the user pastes a thesis intro or chapter-1 draft, links a markdown or PDF intro file, or asks to score, audit, evaluate, or check anchoring on a thesis introduction. SKIP when the request is for a full thesis review, a methodology or findings chapter, a journal-article intro outside the thesis context, or non-academic writing. Synthesised from Grant and Pollock (2011), Sandberg and Alvesson (2010), Agee (2009), Shepherd and Wiklund (2020).
+description: "Evaluate a thesis Introduction and Background draft against the Anchoring Map rubric — 5 anchors (Empirical, Literature, Assumption, Scope, Contribution), 5 funnel stages (Hook, Conversation, Problematization, Research Question, Promise and Map), and a 12-point pre-submission audit. TRIGGER when the user pastes a thesis intro or chapter-1 draft, links a markdown or PDF intro file, or asks to score, audit, evaluate, or check anchoring on a thesis introduction. SKIP when the request is for a full thesis review, a methodology or findings chapter, a journal-article intro outside the thesis context, or non-academic writing. Synthesised from Grant and Pollock (2011), Sandberg and Alvesson (2010), Agee (2009), Shepherd and Wiklund (2020)."
 ---
 
 # Anchoring Map Evaluator
