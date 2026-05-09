@@ -1,779 +1,910 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<title>Thesis Intro &amp; Background — The Anchoring Map</title>
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Anchoring Map · Drafting the Introduction & Background</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-  :root {
-    --ink: #1a1a1a;
-    --paper: #faf7f2;
-    --rule: #2b2b2b;
-    --accent: #8a3a1f;       /* burnt sienna — anchor color */
-    --muted: #6b6b6b;
-    --soft: #ede7dc;
-    --hook: #244a6b;          /* deep blue */
-    --convo: #4a6b3f;         /* moss */
-    --prob: #8a3a1f;          /* sienna */
-    --rq:    #6b3f7a;         /* plum */
-    --road:  #7a5a1f;         /* ochre */
-    --serif: "Source Serif Pro","Charter","Iowan Old Style","Georgia",serif;
-    --sans:  "Inter","Helvetica Neue","Helvetica","Arial",sans-serif;
-    --mono:  "JetBrains Mono","SFMono-Regular","Menlo",monospace;
+  :root{
+    --paper: #f1ece1;
+    --paper-2: #e9e2d2;
+    --ink: #1c1814;
+    --ink-soft: #4a4239;
+    --ink-mute: #7a6f5f;
+    --rule: #c8bfac;
+    --accent: #8b1c1c;
+    --accent-soft: #b6553f;
+    --highlight: #f3d77a;
+    --serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+    --sans: "Inter Tight", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --max: 1240px;
   }
-  * { box-sizing: border-box; }
-  html, body {
-    margin: 0; padding: 0;
+  [data-theme="slate"]{
+    --paper:#171a1d; --paper-2:#1f2327; --ink:#eae3d4; --ink-soft:#bbb3a3; --ink-mute:#8a8273; --rule:#3a3d40; --accent:#e89a64; --accent-soft:#d8855a; --highlight:#cf9b3a;
+  }
+  [data-theme="dusk"]{
+    --paper:#ebe2d5; --paper-2:#dfd3bf; --ink:#2a2230; --ink-soft:#574863; --ink-mute:#867590; --rule:#bfae9a; --accent:#5d3a8e; --accent-soft:#7a52ad; --highlight:#e8b86a;
+  }
+
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
     background: var(--paper);
     color: var(--ink);
-    font-family: var(--serif);
-    font-size: 14.5px;
-    line-height: 1.45;
-  }
-  .page {
-    max-width: 1180px;
-    margin: 28px auto;
-    padding: 36px 44px 48px;
-    background: var(--paper);
-    border: 1px solid #d6cfc1;
-    box-shadow: 0 2px 0 #d6cfc1;
-  }
-  /* ── Header ────────────────────────────────────────────── */
-  header {
-    border-bottom: 2px solid var(--rule);
-    padding-bottom: 14px;
-    margin-bottom: 22px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 18px;
-  }
-  h1 {
-    font-family: var(--serif);
-    font-weight: 600;
-    font-size: 28px;
-    line-height: 1.15;
-    margin: 0 0 4px;
-    letter-spacing: -0.01em;
-  }
-  h1 em { font-style: italic; color: var(--accent); }
-  .subtitle {
-    font-family: var(--sans);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-  }
-  .meta {
-    font-family: var(--sans);
-    font-size: 11px;
-    color: var(--muted);
-    text-align: right;
-    line-height: 1.5;
-  }
-  .meta b { color: var(--ink); font-weight: 600; }
-
-  /* ── Lede ─────────────────────────────────────────────── */
-  .lede {
-    font-size: 15.5px;
-    line-height: 1.55;
-    margin: 0 0 26px;
-    max-width: 880px;
-  }
-  .lede strong { background: #f3e9d6; padding: 0 3px; }
-
-  /* ── Main two-column grid: funnel + anchor column ─────── */
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 28px;
-    align-items: start;
-    margin-bottom: 28px;
-  }
-
-  /* Funnel section */
-  .funnel {
-    position: relative;
-  }
-  .funnel-title {
-    font-family: var(--sans);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .stage {
-    position: relative;
-    border-left: 4px solid var(--ink);
-    padding: 12px 16px 14px 18px;
-    margin-bottom: 6px;
-    background: #fff;
-    border-top: 1px solid #e2dccd;
-    border-right: 1px solid #e2dccd;
-    border-bottom: 1px solid #e2dccd;
-  }
-  .stage[data-color="hook"]  { border-left-color: var(--hook); }
-  .stage[data-color="convo"] { border-left-color: var(--convo); }
-  .stage[data-color="prob"]  { border-left-color: var(--prob); }
-  .stage[data-color="rq"]    { border-left-color: var(--rq); }
-  .stage[data-color="road"]  { border-left-color: var(--road); }
-  .stage h3 {
-    font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 0 0 4px;
-    font-weight: 600;
-  }
-  .stage h2 {
     font-family: var(--serif);
     font-size: 18px;
-    font-weight: 600;
-    margin: 0 0 6px;
-    letter-spacing: -0.005em;
+    line-height: 1.55;
+    font-feature-settings: "kern", "liga", "onum", "ss01";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  .stage h2 em { font-style: italic; }
-  .stage p {
-    margin: 0 0 6px;
-    font-size: 13.5px;
-    line-height: 1.5;
-  }
-  .stage .moves {
-    font-family: var(--sans);
-    font-size: 11.5px;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-  .stage .moves b { color: var(--ink); font-weight: 600; }
-  .arrow {
-    text-align: center;
-    color: var(--ink);
-    font-size: 14px;
-    line-height: 0.6;
-    margin: -2px 0 -2px;
+  body[data-typeset="sans"]{ font-family: var(--sans); }
+  body[data-typeset="sans"] h1, body[data-typeset="sans"] h2,
+  body[data-typeset="sans"] h3, body[data-typeset="sans"] h4{ font-family: var(--sans); }
+
+  /* paper texture */
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.018) 0 1px, transparent 2px),
+      radial-gradient(circle at 70% 60%, rgba(0,0,0,0.018) 0 1px, transparent 2px),
+      radial-gradient(circle at 40% 80%, rgba(0,0,0,0.012) 0 1px, transparent 2px);
+    background-size: 5px 5px, 7px 7px, 11px 11px;
+    mix-blend-mode: multiply;
+    opacity: .9;
   }
 
-  /* Anchor column */
-  .anchors {
-    background: var(--soft);
-    border: 1px solid #d6cfc1;
-    padding: 16px 18px;
-  }
-  .anchors h3 {
-    font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 0 0 4px;
-    font-weight: 600;
-  }
-  .anchors h2 {
-    font-family: var(--serif);
-    font-size: 19px;
-    margin: 0 0 8px;
-    color: var(--accent);
-    letter-spacing: -0.005em;
-  }
-  .anchors > p {
-    font-size: 13px;
-    margin: 0 0 14px;
-  }
-  .anchor-row {
-    display: grid;
-    grid-template-columns: 22px 1fr;
-    gap: 10px;
-    padding: 8px 0;
-    border-top: 1px dashed #c4bca8;
-  }
-  .anchor-row:first-of-type { border-top: 1px solid var(--rule); }
-  .anchor-row:last-of-type  { border-bottom: 1px solid var(--rule); }
-  .anchor-icon {
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 700;
-    color: #fff;
-    background: var(--accent);
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin-top: 1px;
-  }
-  .anchor-row[data-c="hook"]  .anchor-icon { background: var(--hook); }
-  .anchor-row[data-c="convo"] .anchor-icon { background: var(--convo); }
-  .anchor-row[data-c="prob"]  .anchor-icon { background: var(--prob); }
-  .anchor-row[data-c="rq"]    .anchor-icon { background: var(--rq); }
-  .anchor-row[data-c="road"]  .anchor-icon { background: var(--road); }
-  .anchor-row b {
-    font-family: var(--sans);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    display: block;
-    margin-bottom: 1px;
-  }
-  .anchor-row span {
-    font-size: 12.5px;
-    line-height: 1.45;
-    color: #2a2a2a;
-  }
+  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 40px; position:relative; z-index:1;}
+  @media (max-width: 720px){ .wrap{ padding: 0 22px; } }
 
-  /* ── Lower row: gap vs problematization, pitfalls, RQ refinement, stats ── */
-  .lower {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr;
-    gap: 18px;
-    margin-bottom: 28px;
+  /* ── Masthead ───────────────────────────────────────── */
+  header.mast{
+    border-top: 6px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding-top: 18px; padding-bottom: 22px;
+    margin-top: 14px;
   }
-  .panel {
-    background: #fff;
-    border: 1px solid #d6cfc1;
-    padding: 16px 18px;
-  }
-  .panel h3 {
-    font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 0 0 4px;
-    font-weight: 600;
-  }
-  .panel h2 {
-    font-family: var(--serif);
-    font-size: 17px;
-    font-weight: 600;
-    margin: 0 0 10px;
-    letter-spacing: -0.005em;
-  }
-  .panel h2 .src {
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 400;
-    font-style: italic;
-    margin-left: 6px;
-  }
-  /* Gap vs problematization comparison */
-  .compare {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-  .compare > div {
-    border-top: 2px solid var(--rule);
-    padding-top: 8px;
-  }
-  .compare h4 {
-    font-family: var(--sans);
-    font-size: 12px;
-    margin: 0 0 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-  .compare ul {
-    margin: 4px 0 0; padding: 0 0 0 16px;
-    font-size: 12.5px;
-  }
-  .compare li { margin-bottom: 3px; }
-  .pill {
-    display: inline-block;
-    font-family: var(--sans);
-    font-size: 10.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 1px 6px;
-    border-radius: 2px;
-    margin-right: 4px;
-    background: #efe7d8;
-    color: #5a4823;
-  }
-  .pill.warm { background: #f7e3d4; color: #7a3a1f; }
-  .pill.cold { background: #dde7e3; color: #2f5044; }
-
-  /* Pitfalls */
-  .pitfall {
-    display: grid;
-    grid-template-columns: 50px 1fr;
-    align-items: baseline;
-    gap: 8px;
-    padding: 6px 0;
-    border-top: 1px dashed #d6cfc1;
-  }
-  .pitfall:first-of-type { border-top: 1px solid var(--rule); }
-  .pitfall .pct {
-    font-family: var(--serif);
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-  }
-  .pitfall b {
-    font-family: var(--sans);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 2px;
-  }
-  .pitfall span {
-    font-size: 12.5px;
-    line-height: 1.4;
-  }
-
-  /* RQ panel */
-  .rq-cycle {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 6px;
-    font-size: 12.5px;
-  }
-  .rq-step {
-    display: grid;
-    grid-template-columns: 22px 1fr;
-    gap: 8px;
-    align-items: baseline;
-  }
-  .rq-step b {
+  .eyebrow{
     font-family: var(--mono);
     font-size: 11px;
-    background: var(--rq);
-    color: #fff;
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    display:flex; gap: 14px; flex-wrap: wrap; align-items: baseline;
   }
-  .rq-arrow {
-    text-align: center;
-    color: var(--rq);
-    font-size: 12px;
-    margin: -2px 0 -2px 4px;
+  .eyebrow .dot{ width:5px; height:5px; background:var(--accent); border-radius:50%; display:inline-block; transform: translateY(-2px);}
+  h1.headline{
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(40px, 6.6vw, 84px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 18px 0 16px;
+    max-width: 18ch;
+    font-variation-settings: "opsz" 60;
   }
-
-  /* Footer strip */
-  .stats {
+  h1.headline em{ font-style: normal; color: var(--accent); }
+  .deck{
+    font-family: var(--serif);
+    font-size: clamp(17px, 1.5vw, 21px);
+    line-height: 1.45;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0;
+  }
+  .byline{
+    margin-top: 22px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .06em;
+    color: var(--ink-mute);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    background: var(--ink);
-    color: var(--paper);
-    padding: 14px 18px;
-    margin-bottom: 18px;
-  }
-  .stat .n {
-    font-family: var(--serif);
-    font-size: 28px;
-    font-weight: 700;
-    color: #f5d4a4;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .stat .l {
-    font-family: var(--sans);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #d8c8a8;
-    line-height: 1.3;
-  }
-  .stat .l b { color: #fff; font-weight: 600; }
-
-  /* Checklist */
-  .checklist {
-    background: #fff;
-    border: 1px solid #d6cfc1;
-    padding: 16px 20px 18px;
-    margin-bottom: 18px;
-  }
-  .checklist h2 {
-    font-family: var(--serif);
-    font-size: 18px;
-    margin: 0 0 6px;
-  }
-  .checklist h3 {
-    font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 0 0 6px;
-    font-weight: 600;
-  }
-  .checklist ol {
-    column-count: 2;
-    column-gap: 28px;
-    padding-left: 0;
-    margin: 8px 0 0;
-    font-size: 13px;
-    line-height: 1.5;
-    list-style: none;
-    counter-reset: chk;
-  }
-  .checklist ol li {
-    break-inside: avoid;
-    padding: 4px 0 4px 24px;
-    position: relative;
-    counter-increment: chk;
-  }
-  .checklist ol li::before {
-    content: "☐";
-    position: absolute;
-    left: 0; top: 3px;
-    color: var(--accent);
-    font-size: 14px;
-  }
-  .checklist ol li b {
-    font-family: var(--sans);
-    font-size: 11.5px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--ink);
-  }
-
-  /* Sources footer */
-  .sources {
+    gap: 18px;
     border-top: 1px solid var(--rule);
-    padding-top: 10px;
-    font-family: var(--sans);
-    font-size: 10.5px;
-    color: var(--muted);
-    line-height: 1.55;
+    padding-top: 16px;
   }
-  .sources b { color: var(--ink); }
+  .byline .col span{ display:block; color: var(--ink); font-weight: 600; margin-bottom: 4px; text-transform: uppercase; font-size: 10px; letter-spacing: .15em;}
+  @media (max-width: 720px){ .byline{ grid-template-columns: 1fr 1fr; }}
+
+  /* ── Section scaffolding ─────────────────────────────── */
+  section{ padding: 64px 0; border-bottom: 1px solid var(--rule); position: relative;}
+  section.no-rule{ border-bottom:none; }
+  .section-head{
+    display:grid; grid-template-columns: 120px 1fr; gap: 28px;
+    margin-bottom: 36px; align-items: baseline;
+  }
+  .section-head .num{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    border-top: 2px solid var(--accent);
+    padding-top: 8px;
+  }
+  .section-head h2{
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(28px, 3.6vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.012em;
+    max-width: 22ch;
+  }
+  .section-head h2 em{ font-style: italic; color: var(--accent); }
+  .section-head .lede{
+    grid-column: 2; max-width: 60ch; margin-top: 16px;
+    color: var(--ink-soft); font-size: 17px; line-height: 1.55;
+  }
+  @media (max-width: 720px){
+    .section-head{ grid-template-columns: 1fr; gap: 8px;}
+    .section-head .lede{ grid-column: 1; }
+  }
+
+  /* ── Funnel + Anchors layout ─────────────────────────── */
+  .funnel-wrap{
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    gap: 56px;
+  }
+  @media (max-width: 920px){ .funnel-wrap{ grid-template-columns: 1fr; } }
+
+  .stage{
+    display:grid; grid-template-columns: 60px 1fr; gap: 22px;
+    padding: 22px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .stage:last-child{ border-bottom: 1px solid var(--rule); }
+  .stage .stagenum{
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .12em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+  }
+  .stage .stagenum b{
+    display:block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 44px;
+    color: var(--accent);
+    line-height: 1;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+  .stage h3{
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.18;
+    margin: 0 0 10px;
+    letter-spacing: -.005em;
+  }
+  .stage h3 .q{ color: var(--ink-mute); font-style: normal; font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; display:block; margin-bottom: 6px;}
+  .stage p{ margin: 0 0 10px; color: var(--ink-soft); }
+  .stage .note{
+    font-size: 14.5px;
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 14px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .stage .note b{ color: var(--accent); font-weight: 600; }
+
+  /* Anchors aside */
+  .anchors{
+    position: sticky; top: 22px; align-self: start;
+    background: var(--paper-2);
+    border: 1px solid var(--rule);
+    padding: 28px 26px 22px;
+  }
+  .anchors h3{
+    margin: 0 0 6px;
+    font-family: var(--serif);
+    font-weight: 400; font-style: italic;
+    font-size: 28px; letter-spacing: -.005em;
+  }
+  .anchors .sub{
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-mute); margin-bottom: 18px;
+  }
+  .anchor{
+    display:grid; grid-template-columns: 36px 1fr; gap: 14px;
+    padding: 14px 0; border-top: 1px solid var(--rule);
+  }
+  .anchor:last-of-type{ border-bottom: 1px solid var(--rule); }
+  .anchor .letter{
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 30px; color: var(--accent); line-height: 1;
+    border: 1px solid var(--accent); width: 32px; height: 32px;
+    display: grid; place-items: center; padding-bottom: 2px;
+  }
+  .anchor h4{ margin: 0 0 4px; font-family: var(--serif); font-weight: 600; font-size: 16.5px; letter-spacing: -.005em;}
+  .anchor p{ margin: 0; font-size: 14.5px; color: var(--ink-soft); line-height: 1.45;}
+  .anchors .heuristic{
+    margin-top: 18px;
+    font-family: var(--mono); font-size: 12.5px; line-height: 1.5;
+    color: var(--ink); background: var(--paper);
+    padding: 12px 14px; border: 1px dashed var(--rule);
+  }
+
+  /* ── Lessons grid ─────────────────────────────────────── */
+  .lessons{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--rule);}
+  @media (max-width: 980px){ .lessons{ grid-template-columns: 1fr; } }
+  .lesson{
+    padding: 28px 26px 32px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .lesson:last-child{ border-right: none; }
+  @media (max-width: 980px){ .lesson{ border-right: none; } }
+  .lesson .tag{
+    font-family: var(--mono); font-size: 11px; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .lesson h3{
+    font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1.18;
+    margin: 8px 0 4px; letter-spacing: -.005em;
+  }
+  .lesson h3 em{ font-style: italic; color: var(--accent); }
+  .lesson .src{
+    font-family: var(--mono); font-size: 11px; color: var(--ink-mute);
+    margin-bottom: 18px;
+  }
+
+  .twocol{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px;}
+  .twocol h4{
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 17px; margin: 0 0 6px;
+  }
+  .twocol ul{ margin: 0; padding-left: 18px; font-size: 14.5px; color: var(--ink-soft); line-height: 1.5;}
+  .twocol li{ margin-bottom: 4px;}
+  .lesson p{ font-size: 15px; color: var(--ink-soft); margin: 8px 0;}
+  .lesson .pull{
+    margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--rule);
+    font-family: var(--serif); font-size: 15.5px; line-height: 1.45; font-style: italic;
+  }
+  .lesson .pull b{ font-style: normal; font-weight: 600; color: var(--accent);}
+
+  /* Pitfalls bars */
+  .bars{ display:flex; flex-direction: column; gap: 18px; margin-top: 14px;}
+  .bar{ }
+  .bar .row{ display:flex; align-items: baseline; gap: 12px; margin-bottom: 4px;}
+  .bar .pct{
+    font-family: var(--serif); font-style: italic; font-size: 36px; line-height: 1;
+    color: var(--accent); font-variation-settings: "opsz" 60;
+  }
+  .bar .name{ font-family: var(--serif); font-weight: 600; font-size: 16px; }
+  .bar .track{ height: 4px; background: var(--paper-2); border-radius: 2px; overflow: hidden;}
+  .bar .fill{ height: 100%; background: var(--accent);}
+  .bar .desc{ font-size: 14px; color: var(--ink-soft); margin-top: 6px; line-height: 1.5; }
+
+  /* RQ Cycle */
+  .cycle{ margin-top: 14px; }
+  .cycle ol{ margin: 0; padding: 0; list-style: none; counter-reset: c; }
+  .cycle li{
+    counter-increment: c;
+    display: grid; grid-template-columns: 28px 1fr; gap: 10px;
+    padding: 10px 0; border-top: 1px dotted var(--rule);
+    font-size: 14.5px; line-height: 1.45;
+  }
+  .cycle li:first-child{ border-top: none;}
+  .cycle li::before{
+    content: counter(c);
+    font-family: var(--mono); font-size: 11px; font-weight: 600;
+    color: var(--paper); background: var(--accent);
+    width: 22px; height: 22px; border-radius: 50%;
+    display: grid; place-items: center;
+    margin-top: 1px;
+  }
+  .cycle li b{ font-family: var(--serif); font-weight: 600; }
+  .cycle .loop{
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-mute); margin-top: 10px; display:flex; align-items:center; gap: 8px;
+  }
+
+  /* ── Stats banner ─────────────────────────────────────── */
+  .stats{
+    background: var(--ink); color: var(--paper);
+    padding: 56px 0;
+    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+  }
+  .stats .grid{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+    max-width: var(--max); margin: 0 auto; padding: 0 40px;
+  }
+  @media (max-width: 920px){ .stats .grid{ grid-template-columns: 1fr 1fr; } }
+  .stat .num{
+    font-family: var(--serif); font-style: italic; font-weight: 300;
+    font-size: clamp(56px, 7vw, 96px); line-height: .95;
+    color: var(--paper);
+    font-variation-settings: "opsz" 60;
+    letter-spacing: -.02em;
+  }
+  .stat .num em{ color: var(--accent-soft); font-style: italic;}
+  .stat .label{
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; color: rgba(255,255,255,.5);
+    margin-top: 6px; margin-bottom: 12px;
+  }
+  .stat p{ font-size: 14.5px; line-height: 1.5; color: rgba(255,255,255,.78); margin: 0; max-width: 28ch;}
+  .stat p b{ color: var(--paper); font-weight: 600;}
+
+  /* ── Audit checklist ─────────────────────────────────── */
+  .audit{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 0 56px;}
+  @media (max-width: 820px){ .audit{ grid-template-columns: 1fr; gap: 0;} }
+  .check{
+    display:grid; grid-template-columns: 44px 22px 1fr; gap: 14px;
+    padding: 18px 0; border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .check .n{
+    font-family: var(--serif); font-style: italic; font-size: 28px;
+    color: var(--accent); line-height: 1;
+    font-variation-settings: "opsz" 60;
+  }
+  .check input[type="checkbox"]{
+    appearance: none; -webkit-appearance: none;
+    width: 18px; height: 18px; border: 1.5px solid var(--ink-soft);
+    background: transparent; cursor: pointer; position: relative;
+    margin-top: 2px;
+  }
+  .check input[type="checkbox"]:checked{ background: var(--accent); border-color: var(--accent);}
+  .check input[type="checkbox"]:checked::after{
+    content:"✓"; color: var(--paper); position:absolute; inset: 0;
+    display:grid; place-items:center; font-size: 12px; font-weight: 700;
+  }
+  .check label{ cursor: pointer; }
+  .check label b{ font-weight: 600; }
+  .check label{ font-size: 16px; line-height: 1.5; color: var(--ink); }
+  .check.checked label{ color: var(--ink-mute); text-decoration: line-through; text-decoration-color: var(--ink-mute);}
+
+  /* ── Footer / sources ─────────────────────────────────── */
+  footer.sources{
+    padding: 56px 0 80px;
+    font-family: var(--serif);
+    font-size: 14.5px; line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  footer .label{
+    font-family: var(--mono); font-size: 11px; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+  }
+  footer ol{ margin: 0; padding-left: 18px;}
+  footer li{ margin-bottom: 8px;}
+  footer .meta{
+    margin-top: 26px; padding-top: 16px; border-top: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 11.5px; color: var(--ink-mute); letter-spacing: .04em;
+  }
+
+  /* drop cap */
+  .dropcap::first-letter{
+    font-family: var(--serif); font-style: italic; font-weight: 400;
+    font-size: 5.6em; line-height: .85; float: left;
+    margin: 6px 10px 0 0; color: var(--accent);
+    font-variation-settings: "opsz" 60;
+  }
+
+  /* SVG funnel */
+  .funnel-svg{ width: 100%; height: auto; display:block; margin-bottom: 18px;}
+  .funnel-svg text{ font-family: var(--mono); font-size: 11px; fill: var(--ink-mute); letter-spacing: .1em; text-transform: uppercase;}
+
+  /* ── Evaluate CTA ─────────────────────────────────────── */
+  .evaluate{
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  @media (max-width: 920px){ .evaluate{ grid-template-columns: 1fr; } }
+  .evaluate .opt{
+    padding: 28px 28px 32px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .evaluate .opt:last-child{ border-right: none; }
+  @media (max-width: 920px){ .evaluate .opt{ border-right: none; } }
+  .evaluate .tag{
+    font-family: var(--mono); font-size: 11px; letter-spacing: .15em;
+    text-transform: uppercase; color: var(--accent);
+  }
+  .evaluate h3{
+    font-family: var(--serif); font-weight: 400; font-size: 24px; line-height: 1.18;
+    margin: 8px 0 6px; letter-spacing: -.005em;
+  }
+  .evaluate h3 em{ font-style: italic; color: var(--accent); }
+  .evaluate p{ font-size: 15px; line-height: 1.5; color: var(--ink-soft); margin: 0 0 14px;}
+  .evaluate .row{
+    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .04em;
+  }
+  .evaluate .btn{
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 12px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--paper); background: var(--ink);
+    border: 1px solid var(--ink);
+    transition: background .12s ease, color .12s ease;
+  }
+  .evaluate .btn:hover{ background: var(--accent); border-color: var(--accent); }
+  .evaluate .btn.secondary{
+    background: transparent; color: var(--ink);
+  }
+  .evaluate .btn.secondary:hover{ background: var(--ink); color: var(--paper); }
+  .evaluate code{
+    font-family: var(--mono); font-size: 12.5px;
+    background: var(--paper-2); padding: 1px 6px; border: 1px solid var(--rule);
+  }
 
   /* Print */
-  @media print {
-    body { background: #fff; }
-    .page {
-      box-shadow: none;
-      border: none;
-      margin: 0;
-      max-width: 100%;
-      padding: 14mm 14mm 12mm;
-    }
-    .stage, .panel, .anchors, .checklist { break-inside: avoid; }
+  @media print{
+    body{ background: white; color: black; font-size: 11pt; }
+    body::before{ display:none;}
+    .anchors{ position: static; }
+    section{ page-break-inside: avoid;}
+    .stats{ background: white; color: black; border: 1px solid #999;}
+    .stat .num{ color: black;}
+    #tweaks-host{ display: none;}
   }
 </style>
 </head>
-<body>
-<main class="page">
+<body data-theme="paper" data-typeset="serif" style="font-size: 16px">
 
-  <!-- HEADER -->
-  <header>
-    <div>
-      <div class="subtitle">A field guide for thesis writers · VT26</div>
-      <h1>Drafting the <em>Introduction &amp; Background</em><br/>with Proper Anchoring</h1>
+<div class="wrap">
+
+  <!-- ─── MASTHEAD ─── -->
+  <header class="mast">
+    <div class="eyebrow">
+      <span><span class="dot"></span> The Anchoring Map</span>
+      <span>A Field Guide for Thesis Writers</span>
+      <span>VT26 · Master-Thesis</span>
+      <span>Vol. I · No. 01</span>
     </div>
-    <div class="meta">
-      Synthesised from <b>Grant &amp; Pollock (2011)</b>,<br/>
-      <b>Sandberg &amp; Alvesson (2010)</b>, <b>Agee (2009)</b>,<br/>
-      <b>Shepherd &amp; Wiklund (2020)</b>, Course Lecture 2.<br/>
-      Folder: <i>Master-Thesis-VT26 / Thesis Intro</i>
+    <h1 class="headline">Drafting the <em>Introduction &amp; Background</em><br>with proper anchoring.</h1>
+    <p class="deck">A thesis introduction is not a list of sections; it is a <em>chain of anchored claims</em>. Every move (the hook, the conversation you join, the problem you raise, the question you pose, the contribution you promise) must be tethered to something a reader can verify. Unanchored intros read as opinion; anchored intros earn the reader's next 90% of attention.</p>
+
+    <div class="byline">
+      <div class="col"><span>Synthesised from</span>Grant &amp; Pollock · Sandberg &amp; Alvesson · Agee · Shepherd &amp; Wiklund</div>
+      <div class="col"><span>Folder</span>Master-Thesis-VT26 / Thesis Intro</div>
+      <div class="col"><span>Compiled</span>2026 · 05 · 09</div>
+      <div class="col"><span>Reading time</span>~ 12 minutes</div>
     </div>
   </header>
 
-  <p class="lede">
-    A thesis introduction is not a list of sections — it is a <strong>chain of anchored claims</strong>.
-    Every move (the hook, the conversation you join, the problem you raise, the question you pose, the
-    contribution you promise) must be tethered to something a reader can verify: an empirical puzzle, a
-    literature stream, a named assumption, or a stated boundary. Unanchored intros read as opinion;
-    anchored intros earn the reader's next 90% of attention.
-  </p>
-
-  <!-- ── MAIN: FUNNEL + ANCHOR COLUMN ───────────────────────────────────── -->
-  <section class="grid">
-
-    <!-- Funnel (left) -->
-    <div class="funnel">
-      <div class="funnel-title">The Five-Stage Funnel · narrowing from world → question</div>
-
-      <div class="stage" data-color="hook">
-        <h3>Stage 1 · The Hook</h3>
-        <h2>Why should anyone keep reading? <em>(Who cares?)</em></h2>
-        <p>Plant the topic in <i>Pasteur's quadrant</i> — useful AND theoretically rich. Make the reader
-           curious within the first paragraph.</p>
-        <div class="moves">
-          <b>Two archetypes (Grant &amp; Pollock):</b> &nbsp;<i>The Quote</i> — a startling line, vignette, or industry headline. &nbsp;
-          <i>The Trend</i> — a shift on Main Street or in the Ivory Tower whose causes remain a mystery.
-        </div>
-      </div>
-      <div class="arrow">▼</div>
-
-      <div class="stage" data-color="convo">
-        <h3>Stage 2 · The Conversation</h3>
-        <h2>What conversation are you joining? <em>(What do we know?)</em></h2>
-        <p>Establish the field through <i>intertextual coherence</i>: synthesised, progressive, or
-           non-coherent. Show the reader the existing terrain before claiming new ground.</p>
-        <div class="moves">
-          <b>Avoid:</b> "no one has studied X" · "to our knowledge, ours is the first…" — these are
-          first-mover fictions that rarely survive review.
-        </div>
-      </div>
-      <div class="arrow">▼</div>
-
-      <div class="stage" data-color="prob">
-        <h3>Stage 3 · The Problematization</h3>
-        <h2>What is wrong, missing, or contested? <em>(So what?)</em></h2>
-        <p>Pivot from <i>establishing</i> to <i>problematizing</i>. Strongest intros target
-           <b>problems, puzzles, paradoxes</b> — not gaps. Aim for the <i>inadequacy</i> middle ground:
-           fresh look without burning prior work.</p>
-        <div class="moves">
-          <b>Two routes (Hollenbeck):</b> &nbsp;<i>Consensus shifting</i> — challenge widely held assumptions. &nbsp;
-          <i>Consensus creation</i> — resolve a live disagreement.
-        </div>
-      </div>
-      <div class="arrow">▼</div>
-
-      <div class="stage" data-color="rq">
-        <h3>Stage 4 · The Research Question</h3>
-        <h2>What, exactly, will you ask? <em>(Anchored, scoped, answerable.)</em></h2>
-        <p>RQs are <i>navigational tools</i>, not fixed coordinates (Agee). Expect them to evolve as
-           understanding deepens. A good RQ is specific enough to be answerable, broad enough to be
-           interesting.</p>
-        <div class="moves">
-          <b>Test:</b> can a peer say what counts as evidence for and against? If not, the RQ is still
-          a topic, not a question.
-        </div>
-      </div>
-      <div class="arrow">▼</div>
-
-      <div class="stage" data-color="road">
-        <h3>Stage 5 · The Promise &amp; Map</h3>
-        <h2>What will we learn — and how will the rest unfold?</h2>
-        <p>Preview the theoretical contribution and signpost the structure. The intro should function
-           as a <b>stand-alone mini-summary</b>: a reader who reads only this should know the question,
-           the lens, the method, and the contribution.</p>
-        <div class="moves">
-          <b>Calibrate:</b> avoid <i>overpromising</i> — a 14% reviewer-flagged pitfall. Match the
-           promise to what the rest of the thesis actually delivers.
-        </div>
+  <!-- ─── SECTION 1 / FIVE-STAGE FUNNEL + ANCHORS ─── -->
+  <section data-screen-label="01 Funnel and Anchors">
+    <div class="section-head">
+      <div class="num">§ 01 / The Funnel</div>
+      <div>
+        <h2>The five-stage funnel:<br><em>narrowing from world → question.</em></h2>
+        <p class="lede">Every intro moves the reader through the same five steps. Read this column alongside the <em>Five Anchors</em> sidebar; each stage on the left must tie to at least one anchor on the right.</p>
       </div>
     </div>
 
-    <!-- Anchor column (right) -->
-    <aside class="anchors">
-      <h3>Read this column alongside the funnel ◀</h3>
-      <h2>The Five Anchors</h2>
-      <p>Every stage on the left must be tied to at least one of these. If a paragraph in your draft
-         can't cite its anchor, it is <i>floating</i> — cut it or re-tether it.</p>
+    <div class="funnel-wrap">
+      <!-- Stages -->
+      <div class="stages">
+        <!-- Funnel SVG -->
+        <svg class="funnel-svg" viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="6" stroke="var(--rule)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <polygon points="0,10 600,10 540,80 60,80" fill="url(#hatch)" stroke="var(--ink)" stroke-width="1.2"/>
+          <polygon points="60,80 540,80 480,110 120,110" fill="var(--paper-2)" stroke="var(--ink)" stroke-width="1.2"/>
+          <text x="300" y="48" text-anchor="middle">World · Field · Conversation</text>
+          <text x="300" y="100" text-anchor="middle" style="fill:var(--ink)">Research Question</text>
+        </svg>
 
-      <div class="anchor-row" data-c="hook">
-        <div class="anchor-icon">A</div>
-        <div>
-          <b>Empirical anchor</b>
-          <span>A named phenomenon, dataset, headline, vignette, or shift in the world. Specifies
-                <i>where</i> the puzzle lives. Anchors the hook.</span>
-        </div>
+        <article class="stage">
+          <div class="stagenum">Stage<b>1</b>The Hook</div>
+          <div>
+            <h3><span class="q">Who cares?</span>Why should anyone keep reading?</h3>
+            <p class="dropcap">Plant the topic in <em>Pasteur's quadrant</em>, useful AND theoretically rich. Make the reader curious within the first paragraph.</p>
+            <p class="note"><b>Two archetypes (Grant &amp; Pollock).</b> <em>The Quote</em>, a startling line, vignette, or industry headline. <em>The Trend</em>, a shift on Main Street or in the Ivory Tower whose causes remain a mystery.</p>
+          </div>
+        </article>
+
+        <article class="stage">
+          <div class="stagenum">Stage<b>2</b>The Conversation</div>
+          <div>
+            <h3><span class="q">What do we know?</span>What conversation are you joining?</h3>
+            <p>Establish the field through <em>intertextual coherence</em>: synthesised, progressive, or non-coherent. Show the reader the existing terrain before claiming new ground.</p>
+            <p class="note"><b>Avoid:</b> "no one has studied X" · "to our knowledge, ours is the first…" These are first-mover fictions that rarely survive review.</p>
+          </div>
+        </article>
+
+        <article class="stage">
+          <div class="stagenum">Stage<b>3</b>Problematization</div>
+          <div>
+            <h3><span class="q">So what?</span>What is wrong, missing, or contested?</h3>
+            <p>Pivot from <em>establishing</em> to <em>problematizing</em>. The strongest intros target <b>problems, puzzles, paradoxes</b>, not gaps. Aim for the <em>inadequacy</em> middle ground: a fresh look without burning prior work.</p>
+            <p class="note"><b>Two routes (Hollenbeck).</b> <em>Consensus shifting</em>, challenging widely held assumptions. <em>Consensus creation</em>, resolving a live disagreement.</p>
+          </div>
+        </article>
+
+        <article class="stage">
+          <div class="stagenum">Stage<b>4</b>The Question</div>
+          <div>
+            <h3><span class="q">Anchored, scoped, answerable.</span>What, exactly, will you ask?</h3>
+            <p>Research questions are <em>navigational tools</em>, not fixed coordinates (Agee). Expect them to evolve as understanding deepens. A good RQ is specific enough to be answerable, broad enough to be interesting.</p>
+            <p class="note"><b>Test:</b> can a peer say what counts as evidence <em>for</em> and <em>against</em>? If not, the RQ is still a topic, not a question.</p>
+          </div>
+        </article>
+
+        <article class="stage">
+          <div class="stagenum">Stage<b>5</b>Promise &amp; Map</div>
+          <div>
+            <h3><span class="q">What will we learn?</span>And how will the rest unfold?</h3>
+            <p>Preview the theoretical contribution and signpost the structure. The intro should function as a <b>stand-alone mini-summary</b>: a reader who reads only this should know the question, the lens, the method, and the contribution.</p>
+            <p class="note"><b>Calibrate:</b> avoid <em>overpromising</em>, a 14% reviewer-flagged pitfall. Match the promise to what the rest of the thesis actually delivers.</p>
+          </div>
+        </article>
       </div>
 
-      <div class="anchor-row" data-c="convo">
-        <div class="anchor-icon">B</div>
-        <div>
-          <b>Literature anchor</b>
-          <span>A bounded, named conversation — two or more streams you can identify by author and
-                construct. Anchors the field-establishing move.</span>
-        </div>
-      </div>
+      <!-- Anchors aside -->
+      <aside class="anchors" aria-label="The Five Anchors">
+        <div class="sub">Read alongside ◀</div>
+        <h3>The Five Anchors</h3>
+        <p style="font-size:14.5px;color:var(--ink-soft);margin:0 0 10px;">Every stage on the left must be tied to at least one of these. If a paragraph in your draft can't cite its anchor, it is <em>floating</em>: cut it or re-tether it.</p>
 
-      <div class="anchor-row" data-c="prob">
-        <div class="anchor-icon">C</div>
-        <div>
-          <b>Assumption anchor</b>
-          <span>An <i>articulated</i> belief held by that literature — which you will support, refine,
-                or challenge. The deepest anchor; missing in most intros.</span>
-        </div>
-      </div>
+        <div class="anchor"><div class="letter">A</div><div><h4>Empirical anchor</h4><p>A named phenomenon, dataset, headline, vignette, or shift in the world. Specifies <em>where</em> the puzzle lives. Anchors the hook.</p></div></div>
+        <div class="anchor"><div class="letter">B</div><div><h4>Literature anchor</h4><p>A bounded, named conversation of two or more streams you can identify by author and construct. Anchors the field-establishing move.</p></div></div>
+        <div class="anchor"><div class="letter">C</div><div><h4>Assumption anchor</h4><p>An <em>articulated</em> belief held by that literature, which you will support, refine, or challenge. The deepest anchor; missing in most intros.</p></div></div>
+        <div class="anchor"><div class="letter">D</div><div><h4>Scope anchor</h4><p>The boundary conditions of your study: setting, unit of analysis, time frame, population. Tells the reader what you are <em>not</em> claiming.</p></div></div>
+        <div class="anchor"><div class="letter">E</div><div><h4>Contribution anchor</h4><p>The <em>specific</em> way you will change, challenge, or advance the conversation: stated in the intro, delivered in the discussion.</p></div></div>
 
-      <div class="anchor-row" data-c="rq">
-        <div class="anchor-icon">D</div>
-        <div>
-          <b>Scope anchor</b>
-          <span>The boundary conditions of your study: setting, unit of analysis, time frame,
-                population. Tells the reader what you are <i>not</i> claiming.</span>
-        </div>
-      </div>
-
-      <div class="anchor-row" data-c="road">
-        <div class="anchor-icon">E</div>
-        <div>
-          <b>Contribution anchor</b>
-          <span>The <i>specific</i> way you will change, challenge, or advance the conversation —
-                stated in the intro, delivered in the discussion.</span>
-        </div>
-      </div>
-
-      <p style="margin: 14px 0 0; font-size: 12px; color: var(--muted);">
-        <i>Heuristic:</i> draft each intro paragraph, then write its anchor letter (A–E) in the margin.
-        Any paragraph without a letter is a candidate for cutting.
-      </p>
-    </aside>
-  </section>
-
-  <!-- ── LOWER ROW: gap vs problematization · pitfalls · RQ cycle ── -->
-  <section class="lower">
-
-    <div class="panel">
-      <h3>Lesson 1</h3>
-      <h2>Gap-spotting vs Problematization <span class="src">Sandberg &amp; Alvesson (2010)</span></h2>
-      <div class="compare">
-        <div>
-          <h4><span class="pill cold">Gap-spotting</span></h4>
-          <p style="margin:0 0 4px;font-size:12.5px;">Reinforces or modestly extends existing theory.
-             Common but rarely produces <i>interesting</i> contributions.</p>
-          <ul>
-            <li><b>Incompleteness</b> — "X has been understudied"</li>
-            <li><b>Inadequacy</b> — "X needs a fresh perspective"</li>
-            <li><b>Incommensurability</b> — "Prior work is wrong"</li>
-          </ul>
-        </div>
-        <div>
-          <h4><span class="pill warm">Problematization</span></h4>
-          <p style="margin:0 0 4px;font-size:12.5px;">Names and challenges the <i>assumptions</i>
-             underpinning a literature. Higher upside; harder to do.</p>
-          <ul>
-            <li>Identify in-house assumptions</li>
-            <li>Identify root metaphors</li>
-            <li>Identify paradigm-level commitments</li>
-            <li>Identify ideology &amp; field assumptions</li>
-          </ul>
-        </div>
-      </div>
-      <p style="margin:10px 0 0;font-size:12px;color:var(--muted);">
-        <b>For VT26:</b> aim for <i>at least one</i> assumption you can name and gently destabilise —
-        even within an otherwise gap-style frame.
-      </p>
-    </div>
-
-    <div class="panel">
-      <h3>Lesson 2</h3>
-      <h2>The Three Reviewer Pitfalls <span class="src">Grant &amp; Pollock (2011)</span></h2>
-      <div class="pitfall">
-        <div class="pct">60%</div>
-        <div>
-          <b>Failing to motivate &amp; problematize</b>
-          <span>Assuming the topic is "obviously" important; only naming a gap without arguing why
-                filling it matters.</span>
-        </div>
-      </div>
-      <div class="pitfall">
-        <div class="pct">45%</div>
-        <div>
-          <b>Lack of focus</b>
-          <span>Long, rambling, too many frameworks, describing the paper's structure instead of
-                defining the problem.</span>
-        </div>
-      </div>
-      <div class="pitfall">
-        <div class="pct">14%</div>
-        <div>
-          <b>Overpromising</b>
-          <span>Selling contributions in the intro that the rest of the thesis cannot deliver.
-                Mismatch is fatal in defence.</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h3>Lesson 3</h3>
-      <h2>The RQ Refinement Cycle <span class="src">Agee (2009)</span></h2>
-      <p style="margin:0 0 8px;font-size:12.5px;">Treat the research question as <i>provisional</i>.
-         The cycle below repeats throughout the thesis — not just at the start.</p>
-      <div class="rq-cycle">
-        <div class="rq-step"><b>1</b><span><b>Curiosity</b> — a topic that genuinely interests you</span></div>
-        <div class="rq-arrow">▼</div>
-        <div class="rq-step"><b>2</b><span><b>Self-questioning</b> — what do I want to know, and why?</span></div>
-        <div class="rq-arrow">▼</div>
-        <div class="rq-step"><b>3</b><span><b>Provisional RQ</b> — broad, open, generative</span></div>
-        <div class="rq-arrow">▼</div>
-        <div class="rq-step"><b>4</b><span><b>Field/literature contact</b> — what does the data push back on?</span></div>
-        <div class="rq-arrow">▼</div>
-        <div class="rq-step"><b>5</b><span><b>Refined RQ</b> — narrower, anchored, defensible</span></div>
-        <div class="rq-arrow">▲ ↻</div>
-        <div class="rq-step"><b>6</b><span><b>Re-examine</b> — does it still match what you found?</span></div>
-      </div>
+        <div class="heuristic"><b>Heuristic.</b> Draft each intro paragraph, then write its anchor letter (A to E) in the margin. Any paragraph without a letter is a candidate for cutting.</div>
+      </aside>
     </div>
   </section>
 
-  <!-- ── STATS BAND ────────────────────────────────────────────────────── -->
-  <section class="stats">
+  <!-- ─── SECTION 2 / THREE LESSONS ─── -->
+  <section data-screen-label="02 Three Lessons">
+    <div class="section-head">
+      <div class="num">§ 02 / Three Lessons</div>
+      <div>
+        <h2>Three lessons from the literature on <em>writing about writing.</em></h2>
+        <p class="lede">Synthesised from Sandberg &amp; Alvesson (2010), Grant &amp; Pollock (2011), and Agee (2009).</p>
+      </div>
+    </div>
+
+    <div class="lessons">
+      <!-- Lesson 1 -->
+      <article class="lesson">
+        <div class="tag">Lesson 01</div>
+        <h3>Gap-spotting <em>vs</em> problematization</h3>
+        <div class="src">Sandberg &amp; Alvesson · 2010</div>
+        <div class="twocol">
+          <div>
+            <h4>Gap-spotting</h4>
+            <p style="margin-top:0">Reinforces or modestly extends existing theory. Common, but rarely produces <em>interesting</em> contributions.</p>
+            <ul>
+              <li><b>Incompleteness</b>: "X has been understudied"</li>
+              <li><b>Inadequacy</b>: "X needs a fresh perspective"</li>
+              <li><b>Incommensurability</b>: "Prior work is wrong"</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Problematization</h4>
+            <p style="margin-top:0">Names and challenges the <em>assumptions</em> underpinning a literature. Higher upside; harder to do.</p>
+            <ul>
+              <li>In-house assumptions</li>
+              <li>Root metaphors</li>
+              <li>Paradigm-level commitments</li>
+              <li>Ideology &amp; field assumptions</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pull">For VT26: aim for <b>at least one</b> assumption you can name and gently destabilise, even within an otherwise gap-style frame.</div>
+      </article>
+
+      <!-- Lesson 2 -->
+      <article class="lesson">
+        <div class="tag">Lesson 02</div>
+        <h3>The three reviewer <em>pitfalls</em></h3>
+        <div class="src">Grant &amp; Pollock · 2011</div>
+        <div class="bars">
+          <div class="bar">
+            <div class="row"><div class="pct">60%</div><div class="name">Failing to motivate &amp; problematize</div></div>
+            <div class="track"><div class="fill" style="width:60%"></div></div>
+            <div class="desc">Assuming the topic is "obviously" important; only naming a gap without arguing why filling it matters.</div>
+          </div>
+          <div class="bar">
+            <div class="row"><div class="pct">45%</div><div class="name">Lack of focus</div></div>
+            <div class="track"><div class="fill" style="width:45%"></div></div>
+            <div class="desc">Long, rambling, too many frameworks; describing the paper's structure instead of defining the problem.</div>
+          </div>
+          <div class="bar">
+            <div class="row"><div class="pct">14%</div><div class="name">Overpromising</div></div>
+            <div class="track"><div class="fill" style="width:14%"></div></div>
+            <div class="desc">Selling contributions in the intro that the rest of the thesis cannot deliver. Mismatch is fatal in defence.</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Lesson 3 -->
+      <article class="lesson">
+        <div class="tag">Lesson 03</div>
+        <h3>The RQ <em>refinement</em> cycle</h3>
+        <div class="src">Agee · 2009</div>
+        <p style="font-size:15px;color:var(--ink-soft);margin:0 0 10px;">Treat the research question as <em>provisional</em>. The cycle below repeats throughout the thesis, not just at the start.</p>
+        <div class="cycle">
+          <ol>
+            <li><div><b>Curiosity</b>: a topic that genuinely interests you.</div></li>
+            <li><div><b>Self-questioning</b>: what do I want to know, and why?</div></li>
+            <li><div><b>Provisional RQ</b>: broad, open, generative.</div></li>
+            <li><div><b>Field / literature contact</b>: what does the data push back on?</div></li>
+            <li><div><b>Refined RQ</b>: narrower, anchored, defensible.</div></li>
+            <li><div><b>Re-examine</b>: does it still match what you found?</div></li>
+          </ol>
+          <div class="loop">↻ &nbsp; The cycle repeats throughout, not just at the start.</div>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>
+
+<!-- ─── STATS BANNER (full-bleed) ─── -->
+<section class="stats" data-screen-label="03 By the Numbers">
+  <div class="grid">
     <div class="stat">
-      <div class="n">10×</div>
-      <div class="l">average rewrites of the intro by <b>AMJ Best Article</b> winners</div>
+      <div class="num">10<em>×</em></div>
+      <div class="label">Average rewrites</div>
+      <p>Average rewrites of the intro by <b>AMJ Best Article</b> winners.</p>
     </div>
     <div class="stat">
-      <div class="n">24%</div>
-      <div class="l">of total writing time spent on the intro alone — <b>2.5× its length share</b></div>
+      <div class="num">24<em>%</em></div>
+      <div class="label">Of total writing time</div>
+      <p>Of total writing time spent on the intro alone (<b>2.5×</b> its length share).</p>
     </div>
     <div class="stat">
-      <div class="n">3pp</div>
-      <div class="l">recommended length for the intro (double-spaced) — <b>tight, snappy, scoped</b></div>
+      <div class="num">3<em>pp</em></div>
+      <div class="label">Recommended length</div>
+      <p>Recommended length for the intro (double-spaced). <b>Tight, snappy, scoped.</b></p>
     </div>
     <div class="stat">
-      <div class="n">3Q</div>
-      <div class="l">the intro must answer: <b>Who cares · What do we know · What will we learn</b></div>
+      <div class="num">3<em>Q</em></div>
+      <div class="label">Questions to answer</div>
+      <p>The intro must answer: <b>Who cares · What do we know · What will we learn.</b></p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <!-- ─── SECTION 3 / AUDIT CHECKLIST ─── -->
+  <section data-screen-label="04 Anchoring Audit">
+    <div class="section-head">
+      <div class="num">§ 03 / The Audit</div>
+      <div>
+        <h2>Before submission:<br>walk your draft against these <em>twelve checks.</em></h2>
+        <p class="lede">Tick them off as you go. A draft that fails three or more is not ready for a supervisor, let alone a reviewer.</p>
+      </div>
+    </div>
+
+    <div class="audit" id="audit"></div>
+  </section>
+
+  <!-- ─── SECTION 4 / EVALUATE YOUR DRAFT ─── -->
+  <section data-screen-label="05 Evaluate Your Draft">
+    <div class="section-head">
+      <div class="num">§ 04 / Evaluate</div>
+      <div>
+        <h2>Run your own draft against the <em>same rubric.</em></h2>
+        <p class="lede">Two ways to score your <em>Introduction &amp; Background</em> against the five anchors, the funnel stages, the pitfall scan, and the twelve-point audit. The evaluator quotes your draft and returns a prioritised fix list.</p>
+      </div>
+    </div>
+
+    <div class="evaluate">
+      <div class="opt">
+        <div class="tag">Option 01</div>
+        <h3>Universal <em>prompt</em></h3>
+        <p>Paste into ChatGPT, Claude, Gemini, or any LLM. Then paste your draft. Returns a scorecard out of ten, a funnel-stage diagnosis, a pitfall scan, the twelve-point audit, and the top five fixes.</p>
+        <div class="row">
+          <a class="btn" href="https://github.com/mcmespinaa/thesis-anchoring-map/blob/main/evaluator-prompt.md">View prompt</a>
+          <a class="btn secondary" href="https://raw.githubusercontent.com/mcmespinaa/thesis-anchoring-map/main/evaluator-prompt.md">Raw text</a>
+        </div>
+      </div>
+      <div class="opt">
+        <div class="tag">Option 02</div>
+        <h3>Claude Code <em>skill</em></h3>
+        <p>For Claude Code users. Save <code>SKILL.md</code> into <code>~/.claude/skills/anchoring-map-evaluator/</code> and invoke as <em>anchoring-map-evaluator</em>. Same rubric, native integration.</p>
+        <div class="row">
+          <a class="btn" href="https://github.com/mcmespinaa/thesis-anchoring-map/blob/main/SKILL.md">View skill</a>
+          <a class="btn secondary" href="https://raw.githubusercontent.com/mcmespinaa/thesis-anchoring-map/main/SKILL.md">Raw text</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ── CHECKLIST ─────────────────────────────────────────────────────── -->
-  <section class="checklist">
-    <h3>Before submission · the anchoring audit</h3>
-    <h2>Walk your draft against these twelve checks</h2>
-    <ol>
-      <li><b>Hook is anchored to A or B.</b> Empirical phenomenon or named conversation — not a generic claim of importance.</li>
-      <li><b>The "who cares" answer fits in one sentence.</b> If you can't compress it, the topic isn't focused yet.</li>
-      <li><b>You name at least two literature streams</b> (anchor B), and you can describe how they relate.</li>
-      <li><b>You articulate at least one assumption</b> (anchor C) you intend to support, refine, or challenge.</li>
-      <li><b>The word "gap" appears at most once</b> — and never as the sole motivation. Prefer problem · puzzle · paradox.</li>
-      <li><b>The research question can be answered with the data you have access to.</b> Otherwise rescope it.</li>
-      <li><b>Scope (anchor D) is explicit:</b> setting, period, unit of analysis, what is excluded.</li>
-      <li><b>The contribution promise (anchor E) is specific</b> — and you can point to the discussion section that delivers it.</li>
-      <li><b>No first-mover claims.</b> No "this has never been done before."</li>
-      <li><b>Length budget honoured</b> (~3 pages for AMJ; check your programme's spec). Cut frameworks-of-frameworks.</li>
-      <li><b>The intro reads as a stand-alone mini-summary.</b> Hand it to a peer who hasn't read the rest — do they get it?</li>
-      <li><b>Rewritten ≥ 5 times.</b> Award-winners average 10. Treat the first draft as a rough cut, not a draft.</li>
-    </ol>
-  </section>
-
-  <!-- ── EVALUATE YOUR DRAFT ────────────────────────────────────────────── -->
-  <section class="checklist" style="background: #f4ede0; border-color: #c8b89a;">
-    <h3>Use this map · evaluate your own intro</h3>
-    <h2>Score your draft against the rubric</h2>
-    <p style="margin: 6px 0 12px; font-size: 13px; line-height: 1.55;">
-      Two ways to run a structured evaluation of your <em>Introduction &amp; Background</em> against the
-      five anchors, the funnel stages, the pitfall scan, and the 12-point audit.
-    </p>
-    <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 1.6;">
-      <li style="padding: 6px 0; border-top: 1px solid #c8b89a;">
-        <b style="font-family: var(--sans); font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase;">Universal prompt</b><br/>
-        Copy-paste into ChatGPT, Claude, Gemini, or any LLM. Then paste your draft.
-        <a href="https://github.com/mcmespinaa/thesis-anchoring-map/blob/main/evaluator-prompt.md" style="color: var(--accent);">View prompt →</a>
-        &nbsp;·&nbsp;
-        <a href="https://raw.githubusercontent.com/mcmespinaa/thesis-anchoring-map/main/evaluator-prompt.md" style="color: var(--accent);">Raw text</a>
-      </li>
-      <li style="padding: 6px 0; border-top: 1px dashed #c8b89a;">
-        <b style="font-family: var(--sans); font-size: 11.5px; letter-spacing: 0.04em; text-transform: uppercase;">Claude Code skill</b><br/>
-        For Claude Code users. Save <code>SKILL.md</code> into <code>~/.claude/skills/anchoring-map-evaluator/</code> — invoke as <code>anchoring-map-evaluator</code>.
-        <a href="https://github.com/mcmespinaa/thesis-anchoring-map/blob/main/SKILL.md" style="color: var(--accent);">View skill →</a>
-      </li>
-    </ul>
-    <p style="margin: 12px 0 0; font-size: 12px; color: var(--muted);">
-      The evaluator uses the same five anchors (A–E), the funnel stages, and the twelve checks shown above —
-      so its feedback maps directly back to this page.
-    </p>
-  </section>
-
-  <!-- ── SOURCES ───────────────────────────────────────────────────────── -->
+  <!-- ─── FOOTER / SOURCES ─── -->
   <footer class="sources">
-    <b>Sources synthesised:</b>
-    Grant, A. M. &amp; Pollock, T. G. (2011). Publishing in <i>AMJ</i> — Part 3: Setting the Hook. <i>Academy of Management Journal</i>, 54(5), 873–879. ·
-    Sandberg, J. &amp; Alvesson, M. (2010). Ways of constructing research questions: gap-spotting or problematization? <i>Organization</i>, 18(1), 23–44. ·
-    Agee, J. (2009). Developing qualitative research questions: a reflective process. <i>International Journal of Qualitative Studies in Education</i>, 22(4), 431–447. ·
-    Shepherd, D. &amp; Wiklund, J. (2020). Simple rules, templates, and heuristics: An attempt to deconstruct the craft of writing. <i>ET&amp;P</i>. ·
-    Course Lecture 2 — <i>The Research Process: Practical Perspectives</i>.
-    &nbsp;·&nbsp; <b>Compiled:</b> 2026-05-09 · <i>salsu-resources-docs / Master-Thesis-VT26 / Thesis Intro</i>
+    <div class="label">Sources synthesised</div>
+    <ol>
+      <li>Grant, A. M. &amp; Pollock, T. G. (2011). Publishing in <em>AMJ</em>, Part 3: Setting the Hook. <em>Academy of Management Journal,</em> 54(5), 873 to 879.</li>
+      <li>Sandberg, J. &amp; Alvesson, M. (2010). Ways of constructing research questions: gap-spotting or problematization? <em>Organization,</em> 18(1), 23 to 44.</li>
+      <li>Agee, J. (2009). Developing qualitative research questions: a reflective process. <em>International Journal of Qualitative Studies in Education,</em> 22(4), 431 to 447.</li>
+      <li>Shepherd, D. &amp; Wiklund, J. (2020). Simple rules, templates, and heuristics: An attempt to deconstruct the craft of writing. <em>ET&amp;P.</em></li>
+      <li>Course Lecture 2: <em>The Research Process: Practical Perspectives.</em></li>
+    </ol>
+    <div class="meta">salsu-resources-docs / Master-Thesis-VT26 / Thesis Intro · compiled 2026-05-09 · A field guide for thesis writers · VT26</div>
   </footer>
+</div>
 
-</main>
+<!-- Tweaks launcher (the panel speaks an iframe-host protocol; on a standalone
+     page we post the activate message ourselves so the panel is reachable). -->
+<button id="tweaks-launcher" type="button" aria-label="Open theme controls" title="Theme & typography">
+  <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+    <circle cx="8" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M8 1.5v2M8 12.5v2M14.5 8h-2M3.5 8h-2M12.6 3.4l-1.4 1.4M4.8 11.2l-1.4 1.4M12.6 12.6l-1.4-1.4M4.8 4.8L3.4 3.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </svg>
+  <span>Tweaks</span>
+</button>
+<style>
+  #tweaks-launcher{
+    position: fixed; right: 18px; bottom: 18px; z-index: 2147483645;
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 12px;
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--paper); background: var(--ink);
+    border: 1px solid var(--ink); border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    transition: transform .12s ease, box-shadow .12s ease, opacity .15s ease;
+  }
+  #tweaks-launcher:hover{ transform: translateY(-1px); box-shadow: 0 10px 24px rgba(0,0,0,.22); }
+  #tweaks-launcher.is-open{ opacity: 0; pointer-events: none; }
+  @media print{ #tweaks-launcher{ display:none; } }
+</style>
+
+<!-- Tweaks panel host -->
+<div id="tweaks-host"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+
+<script>
+  // ── Build the 12-point audit checklist ──
+  const CHECKS = [
+    ["Hook is anchored to A or B.", "Empirical phenomenon or named conversation, not a generic claim of importance."],
+    ["The 'who cares' answer fits in one sentence.", "If you can't compress it, the topic isn't focused yet."],
+    ["You name at least two literature streams (anchor B),", "and you can describe how they relate."],
+    ["You articulate at least one assumption (anchor C)", "that you intend to support, refine, or challenge."],
+    ["The word 'gap' appears at most once,", "and never as the sole motivation. Prefer problem · puzzle · paradox."],
+    ["The research question can be answered with the data you have access to.", "Otherwise rescope it."],
+    ["Scope (anchor D) is explicit:", "setting, period, unit of analysis, what is excluded."],
+    ["The contribution promise (anchor E) is specific,", "and you can point to the discussion section that delivers it."],
+    ["No first-mover claims.", "No 'this has never been done before.'"],
+    ["Length budget honoured (~3 pages for AMJ;", "check your programme's spec). Cut frameworks-of-frameworks."],
+    ["The intro reads as a stand-alone mini-summary.", "Hand it to a peer who hasn't read the rest; do they get it?"],
+    ["Rewritten ≥ 5 times.", "Award-winners average 10. Treat the first draft as a rough cut, not a draft."],
+  ];
+  const audit = document.getElementById("audit");
+  CHECKS.forEach(([title, body], i) => {
+    const id = "chk-" + (i+1);
+    const row = document.createElement("div");
+    row.className = "check";
+    row.innerHTML = `
+      <div class="n">${String(i+1).padStart(2,"0")}</div>
+      <input type="checkbox" id="${id}">
+      <label for="${id}"><b>${title}</b> ${body}</label>
+    `;
+    const cb = row.querySelector("input");
+    cb.addEventListener("change", () => {
+      row.classList.toggle("checked", cb.checked);
+      const state = JSON.parse(localStorage.getItem("audit")||"{}");
+      state[id] = cb.checked;
+      localStorage.setItem("audit", JSON.stringify(state));
+    });
+    audit.appendChild(row);
+  });
+  // restore
+  try {
+    const state = JSON.parse(localStorage.getItem("audit")||"{}");
+    Object.entries(state).forEach(([id, val]) => {
+      const cb = document.getElementById(id);
+      if (cb && val) { cb.checked = true; cb.dispatchEvent(new Event("change")); }
+    });
+  } catch(e) {}
+
+  // ── Tweaks launcher: post the activate/dismiss messages the panel listens for.
+  // The panel was authored to be hosted inside Claude Design's iframe; on a
+  // standalone page we substitute ourselves for the parent host.
+  (function(){
+    const btn = document.getElementById("tweaks-launcher");
+    if (!btn) return;
+    let open = false;
+    const setOpen = (v) => {
+      open = v;
+      btn.classList.toggle("is-open", v);
+    };
+    btn.addEventListener("click", () => {
+      window.postMessage({ type: open ? "__deactivate_edit_mode" : "__activate_edit_mode" }, "*");
+      setOpen(!open);
+    });
+    // Panel posts __edit_mode_dismissed when the user closes it via the ✕.
+    window.addEventListener("message", (e) => {
+      const t = e?.data?.type;
+      if (t === "__edit_mode_dismissed") setOpen(false);
+      else if (t === "__edit_mode_available") {/* panel is ready; nothing to do */}
+    });
+  })();
+</script>
+
+<script type="text/babel" data-presets="env,react">
+  const { useEffect } = React;
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "theme": "paper",
+    "typeset": "serif",
+    "accent": "#8b1c1c"
+  }/*EDITMODE-END*/;
+
+  function App(){
+    const [t, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
+
+    useEffect(() => {
+      document.body.dataset.theme = t.theme;
+      document.body.dataset.typeset = t.typeset;
+      document.documentElement.style.setProperty("--accent", t.accent);
+    }, [t.theme, t.typeset, t.accent]);
+
+    const { TweaksPanel, TweakSection, TweakRadio, TweakColor } = window;
+
+    return (
+      <TweaksPanel title="Tweaks">
+        <TweakSection title="Palette">
+          <TweakRadio
+            label="Theme"
+            value={t.theme}
+            onChange={v => setTweak("theme", v)}
+            options={[
+              { value: "paper", label: "Paper" },
+              { value: "dusk",  label: "Dusk"  },
+              { value: "slate", label: "Slate" },
+            ]}
+          />
+          <TweakColor
+            label="Accent"
+            value={t.accent}
+            onChange={v => setTweak("accent", v)}
+            options={["#8b1c1c", "#1f5d4c", "#2a4a8b", "#a35a14"]}
+          />
+        </TweakSection>
+        <TweakSection title="Typography">
+          <TweakRadio
+            label="Typeset"
+            value={t.typeset}
+            onChange={v => setTweak("typeset", v)}
+            options={[
+              { value: "serif", label: "Serif" },
+              { value: "sans",  label: "Sans"  },
+            ]}
+          />
+        </TweakSection>
+      </TweaksPanel>
+    );
+  }
+
+  // Wait for tweaks-panel.jsx to load
+  function mount(){
+    if (!window.TweaksPanel || !window.useTweaks) return setTimeout(mount, 50);
+    ReactDOM.createRoot(document.getElementById("tweaks-host")).render(<App/>);
+  }
+  mount();
+</script>
+
 </body>
 </html>
