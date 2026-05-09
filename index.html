@@ -157,7 +157,7 @@
   @media (max-width: 920px){ .funnel-wrap{ grid-template-columns: 1fr; } }
 
   .stage{
-    display:grid; grid-template-columns: 60px 1fr; gap: 22px;
+    display:grid; grid-template-columns: 92px 1fr; gap: 22px;
     padding: 22px 0;
     border-top: 1px solid var(--rule);
   }
@@ -165,9 +165,13 @@
   .stage .stagenum{
     font-family: var(--mono);
     font-size: 11px;
-    letter-spacing: .12em;
+    letter-spacing: .1em;
     color: var(--ink-mute);
     text-transform: uppercase;
+    line-height: 1.35;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
   }
   .stage .stagenum b{
     display:block;
