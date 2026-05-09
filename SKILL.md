@@ -71,7 +71,7 @@ Flag presence/absence of the three reviewer pitfalls:
 - **Lack of focus** (45%): too many frameworks, rambling, describing structure instead of defining problem?
 - **Overpromising** (14%): does the contribution promise exceed what the thesis can deliver?
 
-For each: ⚠️ PRESENT / ⚪ ABSENT / 🟡 PARTIAL, with one-line evidence.
+For each: ⚠️ PRESENT (pitfall found in draft) / 🟡 PARTIAL (partially found) / ✅ CLEAN (pitfall not found — this is a pass), with one-line evidence. *Note for users: ✅ CLEAN means the draft does NOT exhibit this failure mode. It is a positive finding, not a missing item to fix.*
 
 ### 4. The Twelve-Point Audit
 
@@ -112,7 +112,7 @@ Numbered list. Each item: **[anchor letter]** what to change, in 1 to 2 sentence
 ### 3. Pitfall Scan
 
 - ⚠️ PRESENT. Failing to motivate and problematize: opening assumes importance ("solo-founders matter") without arguing why filling this matters now.
-- ⚪ ABSENT. Lack of focus: tight 4-paragraph build-up, single frame.
+- ✅ CLEAN. Lack of focus: tight 4-paragraph build-up, single frame.
 - 🟡 PARTIAL. Overpromising: "novel theoretical contribution" claimed; mechanism not specified.
 
 ### 4. The Twelve-Point Audit (excerpt)
