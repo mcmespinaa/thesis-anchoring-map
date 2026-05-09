@@ -111,7 +111,9 @@
     padding-top: 16px;
   }
   .byline .col span{ display:block; color: var(--ink); font-weight: 600; margin-bottom: 4px; text-transform: uppercase; font-size: 10px; letter-spacing: .15em;}
-  @media (max-width: 720px){ .byline{ grid-template-columns: 1fr 1fr; }}
+  .byline .col{ overflow-wrap: break-word; word-break: break-word; }
+  @media (max-width: 720px){ .byline{ grid-template-columns: 1fr 1fr; gap: 14px;}}
+  @media (max-width: 460px){ .byline{ grid-template-columns: 1fr; gap: 12px;}}
 
   /* ── Section scaffolding ─────────────────────────────── */
   section{ padding: 64px 0; border-bottom: 1px solid var(--rule); position: relative;}
@@ -266,6 +268,7 @@
   }
 
   .twocol{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px;}
+  @media (max-width: 720px){ .twocol{ grid-template-columns: 1fr; gap: 14px; } }
   .twocol h4{
     font-family: var(--serif); font-style: italic; font-weight: 400;
     font-size: 17px; margin: 0 0 6px;
@@ -282,12 +285,13 @@
   /* Pitfalls bars */
   .bars{ display:flex; flex-direction: column; gap: 18px; margin-top: 14px;}
   .bar{ }
-  .bar .row{ display:flex; align-items: baseline; gap: 12px; margin-bottom: 4px;}
+  .bar .row{ display:flex; align-items: baseline; gap: 12px; margin-bottom: 4px; flex-wrap: wrap;}
   .bar .pct{
     font-family: var(--serif); font-style: italic; font-size: 36px; line-height: 1;
     color: var(--accent); font-variation-settings: "opsz" 60;
+    flex: 0 0 auto;
   }
-  .bar .name{ font-family: var(--serif); font-weight: 600; font-size: 16px; }
+  .bar .name{ font-family: var(--serif); font-weight: 600; font-size: 16px; flex: 1 1 auto; min-width: 0; }
   .bar .track{ height: 4px; background: var(--paper-2); border-radius: 2px; overflow: hidden;}
   .bar .fill{ height: 100%; background: var(--accent);}
   .bar .desc{ font-size: 14px; color: var(--ink-soft); margin-top: 6px; line-height: 1.5; }
@@ -447,6 +451,31 @@
   .evaluate code{
     font-family: var(--mono); font-size: 12.5px;
     background: var(--paper-2); padding: 1px 6px; border: 1px solid var(--rule);
+  }
+
+  /* ── Mobile tightening (≤ 720px) ──────────────────────── */
+  @media (max-width: 720px){
+    body{ font-size: 16px; }
+    section{ padding: 44px 0; }
+    .stats{ padding: 40px 0; }
+    .section-head{ margin-bottom: 24px; }
+    .stage{ grid-template-columns: 80px 1fr; gap: 16px; padding: 18px 0; }
+    .stage .stagenum b{ font-size: 36px; }
+    .stage h3{ font-size: 22px; }
+    .anchors{ position: static; padding: 22px 20px 18px; }
+    .lesson{ padding: 22px 20px 26px; }
+    .check{ grid-template-columns: 36px 22px 1fr; gap: 12px; padding: 14px 0; }
+    .check .n{ font-size: 22px; }
+    .check label{ font-size: 15px; }
+    .evaluate .opt{ padding: 22px 20px 26px; }
+    .stats .grid{ padding: 0 22px; gap: 22px; }
+    footer.sources{ padding: 40px 0 60px; }
+    #tweaks-launcher{ right: 12px; bottom: 12px; padding: 7px 10px; font-size: 10px; }
+  }
+  @media (max-width: 460px){
+    .stats .grid{ grid-template-columns: 1fr; gap: 18px; }
+    .evaluate .row{ gap: 8px; }
+    .evaluate .btn{ padding: 7px 10px; font-size: 10px; }
   }
 
   /* Print */
